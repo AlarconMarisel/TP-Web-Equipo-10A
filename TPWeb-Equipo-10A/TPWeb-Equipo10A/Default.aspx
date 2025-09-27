@@ -10,6 +10,6 @@
         <br />
         <h5>Para participar solo debes canjear tu voucher.</h5>
         <br />
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/CanjearVoucher.aspx" CssClass="btn btn-primary">Canjear Voucher</asp:HyperLink>
+        <asp:HyperLink ID="hlCanjearVoucher" runat="server" NavigateUrl="~/CanjearVoucher.aspx" CssClass="btn btn-primary">Canjear Voucher</asp:HyperLink>
     </div>
 </asp:Content>
