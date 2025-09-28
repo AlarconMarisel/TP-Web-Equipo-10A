@@ -1,0 +1,27 @@
+﻿
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+    
+    .cards-container .card {
+        width: 18rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .cards-container .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+       
+        .cards-container .card img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }

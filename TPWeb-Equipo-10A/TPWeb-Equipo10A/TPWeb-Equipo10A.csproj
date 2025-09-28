@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CanjearVoucher.aspx" />
+    <Content Include="css\Estilos.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Premios.aspx" />
