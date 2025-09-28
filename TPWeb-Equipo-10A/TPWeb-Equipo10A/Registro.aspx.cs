@@ -11,6 +11,7 @@ namespace TPWeb_Equipo10A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
         protected void btnParticipar_Click(object sender, EventArgs e)
