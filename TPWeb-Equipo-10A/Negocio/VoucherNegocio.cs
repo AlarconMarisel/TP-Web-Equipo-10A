@@ -11,13 +11,13 @@ namespace Negocio
     {
         public Voucher obtenerVoucherPorCodigo(string codigoVoucher)
         {
-            // TODO: Implementar lógica para obtener voucher por código
+            // logica para obtener voucher por codigo
             throw new NotImplementedException();
         }
 
         public void canjearVoucher(string codigoVoucher, int idCliente, int idArticulo)
         {
-            // TODO: Implementar lógica para canjear voucher
+            // logica para canjear voucher
             throw new NotImplementedException();
         }
     }
