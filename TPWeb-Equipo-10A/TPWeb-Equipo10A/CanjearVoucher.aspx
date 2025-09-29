@@ -4,7 +4,7 @@
     <h2>Participa por cualquiera de nuestros premios</h2>
     <p>Ingresa tu Voucher</p>
 
-    <asp:TextBox ID="txtVoucher" runat="server" Placeholder="Ingrese su código"></asp:TextBox>
+    <asp:TextBox REQUIRED ID="txtVoucher" runat="server" Placeholder="Ingrese su código"  ></asp:TextBox>
     <asp:Button ID="btnCanjear" runat="server" Text="Canjear" OnClick="btnCanjear_Click" CssClass="btn btn-primary" />
     
     <asp:Label ID="lblMensaje" runat="server" CssClass="text-success"></asp:Label>

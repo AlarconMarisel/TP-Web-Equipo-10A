@@ -9,7 +9,7 @@ using Dominio;
 
 namespace TPWeb_Equipo10A
 {
-    public partial class Premios : System.Web.UI.Page
+    public partial class SeleccionarPremio : System.Web.UI.Page
     {
         public List<Articulo> ListaArticulos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
@@ -17,9 +17,9 @@ namespace TPWeb_Equipo10A
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.listarArticuloConSP();
 
-            rptPremios.DataSource = ListaArticulos;
-            rptPremios.DataBind();
-        }
+            rptSeleccionPremio.DataSource = ListaArticulos;
+            rptSeleccionPremio.DataBind();
 
+        }
     }
 }

@@ -15,7 +15,8 @@ namespace TPWeb_Equipo10A
 
         protected void btnCanjear_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Premios.aspx");
+
+            Response.Redirect("SeleccionarPremio.aspx");
         }
     }
 }

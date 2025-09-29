@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Premios.aspx.cs" Inherits="TPWeb_Equipo10A.Premios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SeleccionarPremio.aspx.cs" Inherits="TPWeb_Equipo10A.SeleccionarPremio" %>
 <%@ Import Namespace="Dominio" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -6,26 +6,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="css/estilos.css" />
 
-
-    <h2>Premios</h2>
-    <p>Estos son los premios que puedes ganar:</p>
+    <h2>Seleccion de Premio</h2>
+    <p>Elegí el premio por el que quieres participar:</p>
 
     <div class="cards-container">
-        <asp:Repeater ID="rptPremios" runat="server">
-            <ItemTemplate>
+        <asp:Repeater ID="rptSeleccionPremio" runat="server">
+            <itemtemplate>
                 <div class="card">
                     <!-- Carrusel de Imágenes -->
                     <div id='carousel<%#Eval("IdArticulo") %>' class="carousel slide">
                         <div class="carousel-inner">
                             <asp:Repeater ID="rptImagenes" runat="server" DataSource='<%#Eval("Imagenes") %>'>
-                                <ItemTemplate>
+                                <itemtemplate>
                                     <div class="carousel-item <%# Container.ItemIndex == 0 ? "active" : "" %>">
                                         <img src='<%#Eval("ImagenUrl") %>' class="d-block w-100 card-img-top" alt="Imagen del premio" style="height: 200px; object-fit: contain;">
                                     </div>
-                                </ItemTemplate>
+                                </itemtemplate>
                             </asp:Repeater>
                         </div>
-                        
+
                         <!-- Controles del carrusel (solo si hay más de una imagen) -->
                         <asp:Panel ID="pnlControles" runat="server" Visible='<%# ((List<Imagen>)Eval("Imagenes")).Count > 1 %>'>
                             <button class="carousel-control-prev" type="button" data-bs-target='#carousel<%#Eval("IdArticulo") %>' data-bs-slide="prev">
@@ -37,30 +36,29 @@
                                 <span class="visually-hidden">Siguiente</span>
                             </button>
                         </asp:Panel>
-                        
+
                         <!-- Indicadores (puntos) -->
                         <asp:Panel ID="pnlIndicadores" runat="server" Visible='<%# ((List<Imagen>)Eval("Imagenes")).Count > 1 %>'>
                             <div class="carousel-indicators">
                                 <asp:Repeater ID="rptIndicadores" runat="server" DataSource='<%#Eval("Imagenes") %>'>
-                                    <ItemTemplate>
-                                        <button type="button" data-bs-target='#carousel<%#Eval("IdArticulo") %>' data-bs-slide-to='<%# Container.ItemIndex %>' 
-                                                class='<%# Container.ItemIndex == 0 ? "active" : "" %>' aria-current="true" aria-label="Slide <%# Container.ItemIndex + 1 %>"></button>
-                                    </ItemTemplate>
+                                    <itemtemplate>
+                                        <button type="button" data-bs-target='#carousel<%#Eval("IdArticulo") %>' data-bs-slide-to='<%# Container.ItemIndex %>'
+                                            class='<%# Container.ItemIndex == 0 ? "active" : "" %>' aria-current="true" aria-label="Slide <%# Container.ItemIndex + 1 %>">
+                                        </button>
+                                    </itemtemplate>
                                 </asp:Repeater>
                             </div>
                         </asp:Panel>
                     </div>
-                    
+
                     <div class="card-body">
                         <h5 class="card-title"><%#Eval("nombreArticulo") %></h5>
                         <h6 class="card-text">Marca: <%#Eval("MarcaArticulo") %></h6>
                         <p class="card-text"><%#Eval("descripcionArticulo") %></p>
+                        <a href="Registro.aspx" class="btn btn-primary">Quiero este!</a>
                     </div>
                 </div>
-            </ItemTemplate>
+            </itemtemplate>
         </asp:Repeater>
     </div>
-    <p>Recuerda que para participar debes canjear tu voucher.</p>
-    <asp:HyperLink ID="hlCanjearVoucher" runat="server" NavigateUrl="~/CanjearVoucher.aspx" CssClass="btn btn-primary">Canjear Voucher</asp:HyperLink>
-
 </asp:Content>
