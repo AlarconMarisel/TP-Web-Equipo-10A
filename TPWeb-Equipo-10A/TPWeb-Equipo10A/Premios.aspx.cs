@@ -21,5 +21,6 @@ namespace TPWeb_Equipo10A
             rptPremios.DataSource = ListaArticulos;
             rptPremios.DataBind();
         }
+
     }
 }

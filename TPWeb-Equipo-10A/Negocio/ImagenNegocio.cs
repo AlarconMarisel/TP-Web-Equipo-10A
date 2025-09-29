@@ -15,7 +15,7 @@ namespace Negocio
             try
             {
                 datos.SetearSP("storedListarImagen");
-                //datos.SetearParametro("@IdArticulo", idArticulo);
+                datos.SetearParametro("@IdArticulo", idArticulo);
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())

@@ -7,21 +7,57 @@
     margin-bottom: 30px;
 }
 
-    
-    .cards-container .card {
-        width: 18rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
+.cards-container .card {
+    width: 18rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
 
-        .cards-container .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        }
+.cards-container .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
 
-       
-        .cards-container .card img {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
+/* Estilos para el carrusel */
+.cards-container .carousel {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.cards-container .carousel-inner {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.cards-container .carousel-item img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: contain;
+}
+
+/* Controles del carrusel más pequeños */
+.cards-container .carousel-control-prev,
+.cards-container .carousel-control-next {
+    width: 5%;
+    background: rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+.cards-container .carousel-control-prev:hover,
+.cards-container .carousel-control-next:hover {
+    background: rgba(0,0,0,0.5);
+}
+
+/* Indicadores más pequeños */
+.cards-container .carousel-indicators {
+    margin-bottom: 5px;
+}
+
+.cards-container .carousel-indicators button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 2px;
+}
