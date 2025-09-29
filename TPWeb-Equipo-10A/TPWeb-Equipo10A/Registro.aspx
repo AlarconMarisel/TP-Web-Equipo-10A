@@ -85,6 +85,10 @@
         .btn-participar:hover {
             background-color: #0056b3;
         }
+        .validacion{
+            color: red;
+            font-size: 14px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -95,16 +99,20 @@
         <div class="form-group">
             <label class="form-label">DNI</label>
             <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+            <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Este Campo es requerido!" ControlToValidate="txtDNI" runat="server" />
+          
         </div>
         
         <div class="form-group">
             <label class="form-label">Nombre</label>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+             <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtNombre" runat="server" />
         </div>
         
         <div class="form-group">
             <label class="form-label">Apellido</label>
             <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+             <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtApellido" runat="server" />
         </div>
         
         <div class="form-group">
@@ -112,22 +120,26 @@
             <div class="email-container">
                 <div class="email-at">@</div>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control email-input" placeholder=""></asp:TextBox>
+                 <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Este Campo es requerido!" ControlToValidate="txtEmail" runat="server" />
             </div>
         </div>
         
         <div class="form-group">
             <label class="form-label">Dirección</label>
             <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+             <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Este Campo es requerido!" ControlToValidate="txtDireccion" runat="server" />
         </div>
         
         <div class="form-group">
             <label class="form-label">Ciudad</label>
             <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+             <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtCiudad" runat="server" />
         </div>
         
         <div class="form-group">
             <label class="form-label">CP</label>
             <asp:TextBox ID="txtCP" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+             <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtCP" runat="server" />
         </div>
         
         <div class="checkbox-container">

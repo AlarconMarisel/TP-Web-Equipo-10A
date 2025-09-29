@@ -37,6 +37,7 @@ namespace Negocio
             }
         }
 
+
         public void agregarCategoria(Categoria nuevo)
         {
             
