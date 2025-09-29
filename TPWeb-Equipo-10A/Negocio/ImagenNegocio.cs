@@ -7,15 +7,15 @@ namespace Negocio
 {
     public class ImagenNegocio
     {
-        public List<Imagen> listarImagenesPorArticulo(int idArticulo)
+        public List<Imagen> listarImagenesPorArticuloConSP(int idArticulo)
         {
             List<Imagen> lista = new List<Imagen>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES WHERE IdArticulo = @IdArticulo");
-                datos.SetearParametro("@IdArticulo", idArticulo);
+                datos.SetearSP("storedListarImagen");
+                //datos.SetearParametro("@IdArticulo", idArticulo);
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())

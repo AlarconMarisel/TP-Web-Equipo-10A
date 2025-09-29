@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
-        public List<Articulo> listarArticulo()
+        public List<Articulo> listarArticuloConSP()
         {
             List<Articulo> listadoArticulos = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, A.Precio, M.Descripcion Marca, C.Descripcion Categoria FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE M.Id = A.IdMarca AND C.Id = A.IdCategoria");
+                datos.SetearSP("storedListarArticulo");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -37,7 +37,7 @@ namespace Negocio
                     aux.CategoriaArticulo.Id = (int)datos.Lector["IdCategoria"];
                     aux.CategoriaArticulo.Descripcion = (string)datos.Lector["Categoria"];
 
-                    aux.Imagenes = imagenNegocio.listarImagenesPorArticulo(aux.IdArticulo);
+                    aux.Imagenes = imagenNegocio.listarImagenesPorArticuloConSP(aux.IdArticulo);
 
                     listadoArticulos.Add(aux);
                 }
@@ -144,7 +144,7 @@ namespace Negocio
                     aux.CategoriaArticulo.Id = (int)datos.Lector["IdCategoria"];
                     aux.CategoriaArticulo.Descripcion = (string)datos.Lector["Categoria"];
 
-                    aux.Imagenes = imagenNegocio.listarImagenesPorArticulo(aux.IdArticulo);
+                    aux.Imagenes = imagenNegocio.listarImagenesPorArticuloConSP(aux.IdArticulo);
 
                     return aux;
                 }
