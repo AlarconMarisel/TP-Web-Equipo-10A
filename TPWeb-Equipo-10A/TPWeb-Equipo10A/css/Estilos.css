@@ -20,7 +20,6 @@
     box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
-/* Estilos para el carrusel */
 .cards-container .carousel {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -37,7 +36,6 @@
     object-fit: contain;
 }
 
-/* Controles del carrusel más pequeños */
 .cards-container .carousel-control-prev,
 .cards-container .carousel-control-next {
     width: 5%;
@@ -50,7 +48,6 @@
     background: rgba(0,0,0,0.5);
 }
 
-/* Indicadores más pequeños */
 .cards-container .carousel-indicators {
     margin-bottom: 5px;
 }

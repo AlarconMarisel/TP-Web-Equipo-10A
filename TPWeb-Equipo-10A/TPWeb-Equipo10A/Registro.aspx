@@ -25,6 +25,10 @@
         .form-group {
             margin-bottom: 10px;
         }
+        
+        .form-group .form-control {
+            margin-bottom: 0;
+        }
         .form-label {
             display: block;
             margin-bottom: 3px;
@@ -88,6 +92,22 @@
         .validacion{
             color: red;
             font-size: 14px;
+            margin: 0;
+            padding: 0;
+            display: block;
+            min-height: 0;
+        }
+        
+        .form-group .validacion {
+            margin-top: 2px;
+        }
+        
+        .validacion[style*="display: none"] {
+            display: none !important;
+        }
+        
+        .validacion[style*="visibility: hidden"] {
+            visibility: hidden !important;
         }
     </style>
 </asp:Content>
@@ -98,9 +118,8 @@
         
         <div class="form-group">
             <label class="form-label">DNI</label>
-            <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
-            <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Este Campo es requerido!" ControlToValidate="txtDNI" runat="server" />
-          
+            <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" MaxLength="8" onkeypress="return soloNumeros(event)" onkeyup="buscarDNI()"></asp:TextBox>
+            <asp:Label ID="lblMensajeDNI" runat="server" CssClass="validacion" Visible="false"></asp:Label>
         </div>
         
         <div class="form-group">
@@ -121,6 +140,7 @@
                 <div class="email-at">@</div>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control email-input" placeholder=""></asp:TextBox>
                  <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Este Campo es requerido!" ControlToValidate="txtEmail" runat="server" />
+                 <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Formato de email inválido" ControlToValidate="txtEmail" ValidationExpression="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" runat="server" />
             </div>
         </div>
         
@@ -140,6 +160,7 @@
             <label class="form-label">CP</label>
             <asp:TextBox ID="txtCP" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
              <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtCP" runat="server" />
+             <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Código Postal debe ser numérico" ControlToValidate="txtCP" ValidationExpression="^\d+$" runat="server" />
         </div>
         
         <div class="checkbox-container">
@@ -150,6 +171,39 @@
         </div>
         
         <asp:Button ID="btnParticipar" runat="server" Text="Participar!" CssClass="btn-participar" OnClick="btnParticipar_Click" />
+        
+        <asp:HiddenField ID="hdnBuscarDNI" runat="server" Value="false" />
     </div>
+
+    <script type="text/javascript">
+        var timeoutId;
+        
+        function soloNumeros(event) {
+            var charCode = (event.which) ? event.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function buscarDNI() {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            
+            var dni = document.getElementById('<%= txtDNI.ClientID %>').value;
+            
+            if (dni.length >= 7 && dni.length <= 8) {
+                timeoutId = setTimeout(function() {
+                    document.getElementById('<%= hdnBuscarDNI.ClientID %>').value = 'true';
+                    __doPostBack('<%= Page.ClientID %>', 'BuscarDNI');
+                }, 1000);
+            } else if (dni.length < 7) {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+            }
+        }
+    </script>
 </asp:Content>
 
