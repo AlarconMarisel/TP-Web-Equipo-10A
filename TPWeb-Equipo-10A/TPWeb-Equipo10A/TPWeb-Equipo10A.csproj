@@ -69,6 +69,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Premios.aspx" />
+    <Content Include="RechazoVoucher.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="SeleccionarPremio.aspx" />
     <Content Include="Web.config" />
@@ -104,6 +105,13 @@
     </Compile>
     <Compile Include="Premios.aspx.designer.cs">
       <DependentUpon>Premios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RechazoVoucher.aspx.cs">
+      <DependentUpon>RechazoVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RechazoVoucher.aspx.designer.cs">
+      <DependentUpon>RechazoVoucher.aspx</DependentUpon>
     </Compile>
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>

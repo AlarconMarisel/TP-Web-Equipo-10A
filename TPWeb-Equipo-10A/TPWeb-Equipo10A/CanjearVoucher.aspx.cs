@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace TPWeb_Equipo10A
 {
@@ -15,8 +16,29 @@ namespace TPWeb_Equipo10A
 
         protected void btnCanjear_Click(object sender, EventArgs e)
         {
+            VoucherNegocio negocio = new VoucherNegocio();
+            string codigoVoucher = txtVoucher.Text;
+            
+            Session.Add("voucher", codigoVoucher);
 
-            Response.Redirect("SeleccionarPremio.aspx");
+            if (string.IsNullOrEmpty(codigoVoucher))
+            {
+                lblMensaje.Text = "Por favor, ingrese un código de voucher.";
+                return;
+            }
+            else if (negocio.obtenerVoucherPorCodigo(codigoVoucher) == null)
+            {
+                Session.Add("voucher", "");
+                Response.Redirect("RechazoVoucher.aspx", false);
+            }
+            else if (negocio.obtenerVoucherPorCodigo(codigoVoucher).FechaCanje != null)
+            {
+                Response.Redirect("RechazoVoucher.aspx", false);
+            }
+            else
+            { 
+                Response.Redirect("SeleccionarPremio.aspx", false);
+            }
         }
     }
 }
