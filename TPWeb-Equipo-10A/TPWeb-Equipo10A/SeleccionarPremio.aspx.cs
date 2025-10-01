@@ -21,5 +21,12 @@ namespace TPWeb_Equipo10A
             rptSeleccionPremio.DataBind();
 
         }
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            string premioId = btn.CommandArgument;
+            Session["PremioSeleccionado"] = premioId;
+            Response.Redirect("Registro.aspx");
+        }
     }
 }

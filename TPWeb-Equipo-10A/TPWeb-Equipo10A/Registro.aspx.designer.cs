@@ -15,6 +15,42 @@ namespace TPWeb_Equipo10A
     {
 
         /// <summary>
+        /// pnlPremioSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPremioSeleccionado;
+
+        /// <summary>
+        /// imgPremio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgPremio;
+
+        /// <summary>
+        /// lblNombrePremio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombrePremio;
+
+        /// <summary>
+        /// lblDescripcionPremio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDescripcionPremio;
+
+        /// <summary>
         /// txtDNI control.
         /// </summary>
         /// <remarks>
@@ -22,6 +58,15 @@ namespace TPWeb_Equipo10A
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDNI;
+
+        /// <summary>
+        /// lblMensajeDNI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajeDNI;
 
         /// <summary>
         /// txtNombre control.
@@ -94,15 +139,6 @@ namespace TPWeb_Equipo10A
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnParticipar;
-
-        /// <summary>
-        /// lblMensajeDNI control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensajeDNI;
 
         /// <summary>
         /// hdnBuscarDNI control.

@@ -19,7 +19,7 @@ namespace TPWeb_Equipo10A
             VoucherNegocio negocio = new VoucherNegocio();
             string codigoVoucher = txtVoucher.Text;
             
-            Session.Add("voucher", codigoVoucher);
+            Session.Add("CodigoVoucher", codigoVoucher);
 
             if (string.IsNullOrEmpty(codigoVoucher))
             {
@@ -28,7 +28,7 @@ namespace TPWeb_Equipo10A
             }
             else if (negocio.obtenerVoucherPorCodigo(codigoVoucher) == null)
             {
-                Session.Add("voucher", "");
+                Session["CodigoVoucher"] = null;
                 Response.Redirect("RechazoVoucher.aspx", false);
             }
             else if (negocio.obtenerVoucherPorCodigo(codigoVoucher).FechaCanje != null)

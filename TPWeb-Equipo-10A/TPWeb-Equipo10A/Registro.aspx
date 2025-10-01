@@ -112,6 +112,15 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+      <div style="background-color: #f8f9fa; padding: 15px; margin-bottom: 20px; border-radius: 8px; text-align: center;">
+        <h4>Premio Seleccionado:</h4>
+        <asp:Panel ID="pnlPremioSeleccionado" runat="server" Visible="false">
+            <img id="imgPremio" runat="server" style="max-width: 200px; height: 150px; object-fit: contain;" />
+            <h5 id="lblNombrePremio" runat="server"></h5>
+            <p id="lblDescripcionPremio" runat="server"></p>
+        </asp:Panel>
+    </div>
+
     <div class="form-container">
         <h2 class="form-title">Registro</h2>
         <h3 class="form-subtitle">Ingrésa tus datos:</h3>

@@ -13,10 +13,42 @@ namespace TPWeb_Equipo10A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+               
+                MostrarPremioSeleccionado();
+            }
+
             if (IsPostBack && hdnBuscarDNI.Value == "true")
             {
                 BuscarClientePorDNI();
                 hdnBuscarDNI.Value = "false";
+            }
+        }
+
+        private void MostrarPremioSeleccionado()
+        {
+            string premioIdStr = Session["PremioSeleccionado"]?.ToString();
+
+            if (!string.IsNullOrEmpty(premioIdStr))
+            {
+                int premioId = Convert.ToInt32(premioIdStr);
+                ArticuloNegocio negocio = new ArticuloNegocio();
+
+                List<Articulo> articulos = negocio.listarArticuloConSP();
+                Articulo premioSeleccionado = articulos.FirstOrDefault(a => a.IdArticulo == premioId);
+
+                if (premioSeleccionado != null)
+                {
+                    pnlPremioSeleccionado.Visible = true;
+                    lblNombrePremio.InnerText = premioSeleccionado.NombreArticulo;
+                    lblDescripcionPremio.InnerText = premioSeleccionado.DescripcionArticulo;
+
+                    if (premioSeleccionado.Imagenes != null && premioSeleccionado.Imagenes.Count > 0)
+                    {
+                        imgPremio.Src = premioSeleccionado.Imagenes[0].ImagenUrl;
+                    }
+                }
             }
         }
 
@@ -30,7 +62,6 @@ namespace TPWeb_Equipo10A
                 lblMensajeDNI.Visible = true;
                 return;
             }
-
             if (txtDNI.Text.Length < 7 || txtDNI.Text.Length > 8)
             {
                 lblMensajeDNI.Text = "DNI debe tener entre 7 y 8 dígitos";
@@ -39,18 +70,16 @@ namespace TPWeb_Equipo10A
                 lblMensajeDNI.Visible = true;
                 return;
             }
-
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) || 
-                string.IsNullOrWhiteSpace(txtApellido.Text) || 
-                string.IsNullOrWhiteSpace(txtEmail.Text) || 
-                string.IsNullOrWhiteSpace(txtDireccion.Text) || 
-                string.IsNullOrWhiteSpace(txtCiudad.Text) || 
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtDireccion.Text) ||
+                string.IsNullOrWhiteSpace(txtCiudad.Text) ||
                 string.IsNullOrWhiteSpace(txtCP.Text))
             {
                 Response.Write("<script>alert('Todos los campos son requeridos.');</script>");
                 return;
             }
-
             if (!chkTerminos.Checked)
             {
                 Response.Write("<script>alert('Debe aceptar los términos y condiciones para participar.');</script>");
@@ -70,43 +99,48 @@ namespace TPWeb_Equipo10A
                 nuevoCliente.Ciudad = txtCiudad.Text.Trim();
 
                 int codigoPostal;
-                if (int.TryParse(txtCP.Text.Trim(), out codigoPostal))
+                if (!int.TryParse(txtCP.Text.Trim(), out codigoPostal))
                 {
-                    nuevoCliente.CodigoPostal = codigoPostal;
-                }
-                else
-                {
-
                     Response.Write("<script>alert('Error: El Código Postal debe ser un número válido.');</script>");
                     return;
                 }
+                nuevoCliente.CodigoPostal = codigoPostal;
 
                 int idNuevoCliente = negocioCliente.agregarCliente(nuevoCliente);
 
                 if (idNuevoCliente > 0)
                 {
-
                     Session["IdUsuario"] = idNuevoCliente;
                     Session["NombreUsuario"] = nuevoCliente.Nombre + " " + nuevoCliente.Apellido;
 
+                   
+                    string codigoVoucher = Session["CodigoVoucher"]?.ToString();
+                    string premioIdStr = Session["PremioSeleccionado"]?.ToString();
+
+                    if (!string.IsNullOrEmpty(codigoVoucher) && !string.IsNullOrEmpty(premioIdStr))
+                    {
+                        int premioId = Convert.ToInt32(premioIdStr);
+                        VoucherNegocio negocioVoucher = new VoucherNegocio();
+                        negocioVoucher.canjearVoucher(codigoVoucher, idNuevoCliente, premioId);
+
+                        Session.Remove("CodigoVoucher");
+                        Session.Remove("PremioSeleccionado");
+                    }
+
                     Response.Write("<script>alert('¡Registro exitoso! Ya puedes participar en nuestras promociones.');</script>");
-
-
                     Response.Redirect("Premios.aspx");
                 }
                 else
                 {
-
                     Response.Write("<script>alert('Error en el registro: No se pudo completar el registro.');</script>");
                 }
             }
             catch (Exception ex)
             {
-
                 Response.Write($"<script>alert('Error en el registro: {ex.Message}');</script>");
-
             }
         }
+
 
         private void BuscarClientePorDNI()
         {
