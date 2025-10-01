@@ -28,7 +28,7 @@ namespace TPWeb_Equipo10A
             }
             else if (negocio.obtenerVoucherPorCodigo(codigoVoucher) == null)
             {
-                Session["CodigoVoucher"] = null;
+                Session.Add("CodigoVoucher", "");
                 Response.Redirect("RechazoVoucher.aspx", false);
             }
             else if (negocio.obtenerVoucherPorCodigo(codigoVoucher).FechaCanje != null)

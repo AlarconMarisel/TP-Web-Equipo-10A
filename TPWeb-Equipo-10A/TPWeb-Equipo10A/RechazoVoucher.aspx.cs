@@ -12,7 +12,7 @@ namespace TPWeb_Equipo10A
         public string user { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = Session["voucher"].ToString();
+            user = Session["CodigoVoucher"].ToString();
         }
 
         protected void btnRegresarInicio_Click(object sender, EventArgs e)
