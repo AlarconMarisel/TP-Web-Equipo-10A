@@ -58,3 +58,23 @@
     border-radius: 50%;
     margin: 0 2px;
 }
+
+/* Estilos para páginas con imagen de fondo */
+.page-with-background {
+    background: url('./ImganenFondo.png') no-repeat center center fixed !important;
+    background-size: cover !important;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* Forzar la imagen en el body también */
+body.page-with-background {
+    background: url('./ImganenFondo.png') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+/* Fondo por defecto para páginas sin imagen */
+body {
+    background-color: lavender;
+}
