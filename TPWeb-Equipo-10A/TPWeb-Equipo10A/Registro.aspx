@@ -132,6 +132,10 @@
         <h2 class="form-title">Registro</h2>
         <h3 class="form-subtitle">Ingrésa tus datos:</h3>
         
+        <div class="alert alert-info" id="divInfoClienteExistente" runat="server" style="display: none; margin-bottom: 15px; padding: 10px; background-color: #d1ecf1; border: 1px solid #bee5eb; border-radius: 4px; color: #0c5460;">
+            <strong>¡Cliente encontrado!</strong> Tus datos han sido cargados automáticamente. Puedes modificarlos si es necesario.
+        </div>
+        
         <div class="form-group">
             <label class="form-label">DNI</label>
             <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" MaxLength="8" onkeypress="return soloNumeros(event)" onkeyup="buscarDNI()"></asp:TextBox>
@@ -140,14 +144,16 @@
         
         <div class="form-group">
             <label class="form-label">Nombre</label>
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="" onkeypress="return soloLetrasYEspacios(event)"></asp:TextBox>
              <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtNombre" runat="server" />
+             <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Solo se permiten letras y espacios" ControlToValidate="txtNombre" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" runat="server" />
         </div>
         
         <div class="form-group">
             <label class="form-label">Apellido</label>
-            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="" onkeypress="return soloLetrasYEspacios(event)"></asp:TextBox>
              <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtApellido" runat="server" />
+             <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Solo se permiten letras y espacios" ControlToValidate="txtApellido" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" runat="server" />
         </div>
         
         <div class="form-group">
@@ -168,8 +174,9 @@
         
         <div class="form-group">
             <label class="form-label">Ciudad</label>
-            <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+            <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" placeholder="" onkeypress="return soloLetrasYEspacios(event)"></asp:TextBox>
              <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtCiudad" runat="server" />
+             <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Solo se permiten letras y espacios" ControlToValidate="txtCiudad" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" runat="server" />
         </div>
         
         <div class="form-group">
@@ -189,6 +196,8 @@
         <asp:Button ID="btnParticipar" runat="server" Text="Participar!" CssClass="btn-participar" OnClick="btnParticipar_Click" />
         
         <asp:HiddenField ID="hdnBuscarDNI" runat="server" Value="false" />
+        <asp:HiddenField ID="hdnClienteExistente" runat="server" Value="false" />
+        <asp:HiddenField ID="hdnIdClienteExistente" runat="server" Value="0" />
     </div>
 
     <script type="text/javascript">
@@ -197,6 +206,14 @@
         function soloNumeros(event) {
             var charCode = (event.which) ? event.which : event.keyCode;
             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function soloLetrasYEspacios(event) {
+            var charCode = (event.which) ? event.which : event.keyCode;
+            if (charCode > 31 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && charCode !== 32 && charCode !== 241 && charCode !== 209) {
                 return false;
             }
             return true;

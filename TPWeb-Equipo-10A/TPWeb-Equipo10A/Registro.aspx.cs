@@ -86,17 +86,17 @@ namespace TPWeb_Equipo10A
                 return;
             }
 
-            Cliente nuevoCliente = new Cliente();
+            Cliente cliente = new Cliente();
             ClienteNegocio negocioCliente = new ClienteNegocio();
 
             try
             {
-                nuevoCliente.Documento = txtDNI.Text.Trim();
-                nuevoCliente.Nombre = txtNombre.Text.Trim();
-                nuevoCliente.Apellido = txtApellido.Text.Trim();
-                nuevoCliente.Email = txtEmail.Text.Trim();
-                nuevoCliente.Direccion = txtDireccion.Text.Trim();
-                nuevoCliente.Ciudad = txtCiudad.Text.Trim();
+                cliente.Documento = txtDNI.Text.Trim();
+                cliente.Nombre = txtNombre.Text.Trim();
+                cliente.Apellido = txtApellido.Text.Trim();
+                cliente.Email = txtEmail.Text.Trim();
+                cliente.Direccion = txtDireccion.Text.Trim();
+                cliente.Ciudad = txtCiudad.Text.Trim();
 
                 int codigoPostal;
                 if (!int.TryParse(txtCP.Text.Trim(), out codigoPostal))
@@ -104,14 +104,25 @@ namespace TPWeb_Equipo10A
                     Response.Write("<script>alert('Error: El Código Postal debe ser un número válido.');</script>");
                     return;
                 }
-                nuevoCliente.CodigoPostal = codigoPostal;
+                cliente.CodigoPostal = codigoPostal;
 
-                int idNuevoCliente = negocioCliente.agregarCliente(nuevoCliente);
-
-                if (idNuevoCliente > 0)
+                int idCliente;
+                
+                if (hdnClienteExistente.Value == "true" && !string.IsNullOrEmpty(hdnIdClienteExistente.Value))
                 {
-                    Session["IdUsuario"] = idNuevoCliente;
-                    Session["NombreUsuario"] = nuevoCliente.Nombre + " " + nuevoCliente.Apellido;
+                    cliente.IdCliente = Convert.ToInt32(hdnIdClienteExistente.Value);
+                    negocioCliente.modificarCliente(cliente);
+                    idCliente = cliente.IdCliente;
+                }
+                else
+                {
+                    idCliente = negocioCliente.agregarCliente(cliente);
+                }
+
+                if (idCliente > 0)
+                {
+                    Session["IdUsuario"] = idCliente;
+                    Session["NombreUsuario"] = cliente.Nombre + " " + cliente.Apellido;
 
                    
                     string codigoVoucher = Session["CodigoVoucher"]?.ToString();
@@ -121,13 +132,17 @@ namespace TPWeb_Equipo10A
                     {
                         int premioId = Convert.ToInt32(premioIdStr);
                         VoucherNegocio negocioVoucher = new VoucherNegocio();
-                        negocioVoucher.canjearVoucher(codigoVoucher, idNuevoCliente, premioId);
+                        negocioVoucher.canjearVoucher(codigoVoucher, idCliente, premioId);
 
                         Session.Remove("CodigoVoucher");
                         Session.Remove("PremioSeleccionado");
                     }
 
-                    Response.Write("<script>alert('¡Registro exitoso! Ya puedes participar en nuestras promociones.');</script>");
+                    string mensaje = hdnClienteExistente.Value == "true" 
+                        ? "¡Datos actualizados exitosamente! Ya puedes participar en nuestras promociones."
+                        : "¡Registro exitoso! Ya puedes participar en nuestras promociones.";
+                    
+                    Response.Write($"<script>alert('{mensaje}');</script>");
                     Response.Redirect("Premios.aspx");
                 }
                 else
@@ -167,7 +182,14 @@ namespace TPWeb_Equipo10A
                     txtCiudad.Text = clienteExistente.Ciudad;
                     txtCP.Text = clienteExistente.CodigoPostal.ToString();
 
-                    lblMensajeDNI.Visible = false;
+                    hdnClienteExistente.Value = "true";
+                    hdnIdClienteExistente.Value = clienteExistente.IdCliente.ToString();
+
+                    divInfoClienteExistente.Style["display"] = "block";
+                    lblMensajeDNI.Text = "Cliente encontrado. Puedes modificar tus datos si es necesario.";
+                    lblMensajeDNI.CssClass = "validacion";
+                    lblMensajeDNI.Style["color"] = "green";
+                    lblMensajeDNI.Visible = true;
                 }
                 else
                 {
@@ -178,6 +200,10 @@ namespace TPWeb_Equipo10A
                     txtCiudad.Text = "";
                     txtCP.Text = "";
 
+                    hdnClienteExistente.Value = "false";
+                    hdnIdClienteExistente.Value = "0";
+
+                    divInfoClienteExistente.Style["display"] = "none";
                     lblMensajeDNI.Text = "DNI no encontrado, complete todos los campos";
                     lblMensajeDNI.CssClass = "validacion";
                     lblMensajeDNI.Style["color"] = "blue";
