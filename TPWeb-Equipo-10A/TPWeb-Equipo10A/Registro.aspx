@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="TPWeb_Equipo10A.Registro" ResponseEncoding="utf-8" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        body {
+            background-color: lavender !important;
+            background-image: none !important;
+        }
+        body::before {
+            display: none !important;
+        }
         .form-container {
             max-width: 400px;
             margin: 10px auto;
