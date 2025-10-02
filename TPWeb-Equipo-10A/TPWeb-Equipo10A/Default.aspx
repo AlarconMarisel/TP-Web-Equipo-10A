@@ -17,7 +17,7 @@
             height: 100%;
             background: url('ImganenFondo.png') no-repeat center center;
             background-size: cover;
-            opacity: 0.50;
+            opacity: 0.40;
             z-index: -1;
         }
         .main-content {
