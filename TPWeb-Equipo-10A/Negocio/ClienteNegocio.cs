@@ -29,6 +29,8 @@ namespace Negocio
                 datos.SetearParametro("@Ciudad", clienteNuevo.Ciudad);
                 datos.SetearParametro("@CP", clienteNuevo.CodigoPostal);
 
+                return datos.EjecutarAccionScalar();
+
                 datos.EjecutarLectura();
 
                 if (datos.Lector.Read())
@@ -169,4 +171,5 @@ namespace Negocio
             }
         }
     }
+        
 }

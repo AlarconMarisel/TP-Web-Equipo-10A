@@ -16,6 +16,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h2>¡Su voucher ha sido canjeado exitosamente!</h2>
+                        <h3>Te enviamos un mail de confirmacion!</h3>
                         <p>Gracias por participar.¡Buena Suerte!</p>
                         <asp:Button ID="btnVolverInicio" runat="server" Text="Volver al Inicio" OnClick="btnVolverInicio_Click" CssClass="btn btn-primary" />
                     </div>

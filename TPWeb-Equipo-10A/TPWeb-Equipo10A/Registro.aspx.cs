@@ -51,7 +51,6 @@ namespace TPWeb_Equipo10A
                 }
             }
         }
-
         protected void btnParticipar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtDNI.Text))
@@ -107,7 +106,7 @@ namespace TPWeb_Equipo10A
                 cliente.CodigoPostal = codigoPostal;
 
                 int idCliente;
-                
+
                 if (hdnClienteExistente.Value == "true" && !string.IsNullOrEmpty(hdnIdClienteExistente.Value))
                 {
                     cliente.IdCliente = Convert.ToInt32(hdnIdClienteExistente.Value);
@@ -124,7 +123,6 @@ namespace TPWeb_Equipo10A
                     Session["IdUsuario"] = idCliente;
                     Session["NombreUsuario"] = cliente.Nombre + " " + cliente.Apellido;
 
-                   
                     string codigoVoucher = Session["CodigoVoucher"]?.ToString();
                     string premioIdStr = Session["PremioSeleccionado"]?.ToString();
 
@@ -134,11 +132,19 @@ namespace TPWeb_Equipo10A
                         VoucherNegocio negocioVoucher = new VoucherNegocio();
                         negocioVoucher.canjearVoucher(codigoVoucher, idCliente, premioId);
 
+                        
+                        EmailsService emailService = new EmailsService();
+                        string asunto = "Confirmación de inscripción a Promo Web";
+                        string cuerpo = $"<h2>¡Gracias {cliente.Nombre} {cliente.Apellido}!</h2>" +
+                                        "<p>Tu registro fue exitoso y tu participación quedó confirmada.</p>" +
+                                        "<p>¡Mucha suerte con el premio elegido!</p>";
+                        emailService.ArmarCorreo(cliente.Email, asunto, cuerpo);
+                        emailService.EnviarMail();
+
                         Session.Remove("CodigoVoucher");
                         Session.Remove("PremioSeleccionado");
 
                         Response.Redirect("ConfirmacionCanje.aspx", false);
-
                     }
 
                     //string mensaje = hdnClienteExistente.Value == "true" 
@@ -158,8 +164,6 @@ namespace TPWeb_Equipo10A
                 Response.Write($"<script>alert('Error en el registro: {ex.Message}');</script>");
             }
         }
-
-
         private void BuscarClientePorDNI()
         {
             try
