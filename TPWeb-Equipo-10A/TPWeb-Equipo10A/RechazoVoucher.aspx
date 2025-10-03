@@ -13,25 +13,24 @@
     <form id="frmRechazoVoucher" runat="server">
         <div class="container">
             <div style="padding-top: 10rem">
-            <div class="card text-center">
-            <div class="card-body">
-                <%if (user == "")
-                    {%>
-                <h2>Voucher Rechazado</h2>
-                <p>El código de voucher ingresado no es válido. Por favor, intente nuevamente.</p>
-                <% }
-                    else
-                    {%>
-                <h2>Voucher Rechazado</h2>
-                <p>El voucher ya ha sido canjeado previamente. Por favor, ingrese otro voucher.</p>
-                <%} %>
-
-                <asp:Button ID="btnRegresarInicio" runat="server" Text="Volver al Inicio" CssClass="btn btn-primary" OnClick="btnRegresarInicio_Click" />
+                <div class="card text-center">
+                    <div class="card-body">
+                        <%if (user == "")
+                            {%>
+                        <h2>Voucher Rechazado</h2>
+                        <p>El código de voucher ingresado no es válido. Por favor, intente nuevamente.</p>
+                        <% }
+                            else
+                            {%>
+                        <h2>Voucher Rechazado</h2>
+                        <p>El voucher ya ha sido canjeado previamente. Por favor, ingrese otro voucher.</p>
+                        <%} %>
+                        <asp:Button ID="btnRegresarInicio" runat="server" Text="Volver al Inicio" CssClass="btn btn-primary" OnClick="btnRegresarInicio_Click" />
+                    </div>
+                </div>
             </div>
-                </div>
-                </div>
-                </div>
-   
+        </div>
+
     </form>
 </body>
 </html>

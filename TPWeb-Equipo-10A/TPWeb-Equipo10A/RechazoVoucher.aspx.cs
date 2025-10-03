@@ -10,9 +10,12 @@ namespace TPWeb_Equipo10A
     public partial class RechazoVoucher : System.Web.UI.Page
     {   
         public string user { get; set; }
+        public string user2 { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             user = Session["CodigoVoucher"].ToString();
+
+            user2 = Session["RegistroExitoso"].ToString();
         }
 
         protected void btnRegresarInicio_Click(object sender, EventArgs e)

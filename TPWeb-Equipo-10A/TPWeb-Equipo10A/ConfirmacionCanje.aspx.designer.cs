@@ -11,25 +11,25 @@ namespace TPWeb_Equipo10A
 {
 
 
-    public partial class Premios
+    public partial class ConfirmacionCanje
     {
 
         /// <summary>
-        /// Control rptPremios.
+        /// Control frmConfirmacionCanje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPremios;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmConfirmacionCanje;
 
         /// <summary>
-        /// Control hlCanjearVoucher.
+        /// Control btnVolverInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlCanjearVoucher;
+        protected global::System.Web.UI.WebControls.Button btnVolverInicio;
     }
 }

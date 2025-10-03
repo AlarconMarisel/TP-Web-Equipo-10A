@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CanjearVoucher.aspx" />
+    <Content Include="ConfirmacionCanje.aspx" />
     <Content Include="css\Estilos.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -81,6 +82,13 @@
     </Compile>
     <Compile Include="CanjearVoucher.aspx.designer.cs">
       <DependentUpon>CanjearVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmacionCanje.aspx.cs">
+      <DependentUpon>ConfirmacionCanje.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmacionCanje.aspx.designer.cs">
+      <DependentUpon>ConfirmacionCanje.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

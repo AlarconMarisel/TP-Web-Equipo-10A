@@ -136,14 +136,17 @@ namespace TPWeb_Equipo10A
 
                         Session.Remove("CodigoVoucher");
                         Session.Remove("PremioSeleccionado");
+
+                        Response.Redirect("ConfirmacionCanje.aspx", false);
+
                     }
 
-                    string mensaje = hdnClienteExistente.Value == "true" 
-                        ? "¡Datos actualizados exitosamente! Ya puedes participar en nuestras promociones."
-                        : "¡Registro exitoso! Ya puedes participar en nuestras promociones.";
-                    
-                    Response.Write($"<script>alert('{mensaje}');</script>");
-                    Response.Redirect("Premios.aspx");
+                    //string mensaje = hdnClienteExistente.Value == "true" 
+                    //    ? "¡Datos actualizados exitosamente! Ya puedes participar en nuestras promociones."
+                    //    : "¡Registro exitoso! Ya puedes participar en nuestras promociones.";
+
+                    //Response.Write($"<script>alert('{mensaje}');</script>");
+                    //Response.Redirect("Premios.aspx");
                 }
                 else
                 {

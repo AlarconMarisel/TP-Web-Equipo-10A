@@ -20,6 +20,7 @@ namespace TPWeb_Equipo10A
             string codigoVoucher = txtVoucher.Text;
             
             Session.Add("CodigoVoucher", codigoVoucher);
+            Session.Add("RegistroExitoso", "false");
 
             if (string.IsNullOrEmpty(codigoVoucher))
             {

@@ -61,7 +61,6 @@
                         <h5 class="card-title"><%#Eval("nombreArticulo") %></h5>
                         <h6 class="card-text">Marca: <%#Eval("MarcaArticulo") %></h6>
                         <p class="card-text"><%#Eval("descripcionArticulo") %></p>
-                        <a href="Registro.aspx" class="btn btn-primary">Quiero este!</a>
                     </div>
                 </div>
             </ItemTemplate>
