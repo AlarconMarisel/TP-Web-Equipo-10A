@@ -24,7 +24,7 @@
                         <div class="navbar-nav">
                             <a class="nav-link" href="CanjearVoucher.aspx">Canjea tu voucher</a>
                             <a class="nav-link" href="Premios.aspx">Premios</a>
-                            <a class="nav-link" href="#Creadores">Creadores</a>
+                            <a class="nav-link" href="#Desarrolladores">Desarrolladores</a>
                             <!--<a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
                         </div>
                     </div>
@@ -34,11 +34,11 @@
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-            <footer id="Creadores" style="margin-top: auto;">
+            <footer id="Desarrolladores" style="margin-top: auto;">
                 <hr />
                 <div style="padding-left: 1rem">
                     <div style="padding-bottom: 1rem">
-                        Integrantes: Gobbi Claudio Cesar, Figueroa Lautaro Nahuel y Alarcón Elvina Marisel.
+                        Equipo: Alarcón Elvina Marisel, Figueroa Lautaro Nahuel y Gobbi Claudio César.
                     </div>
                 </div>
             </footer>
