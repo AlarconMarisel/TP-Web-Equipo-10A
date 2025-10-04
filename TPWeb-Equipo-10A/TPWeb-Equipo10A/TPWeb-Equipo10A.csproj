@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="CanjearVoucher.aspx" />
     <Content Include="ConfirmacionCanje.aspx" />
+    <Content Include="css\EstiloRegistro.css" />
     <Content Include="css\Estilos.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
