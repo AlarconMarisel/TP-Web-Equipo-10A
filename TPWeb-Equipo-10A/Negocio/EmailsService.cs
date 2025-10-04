@@ -29,10 +29,18 @@ namespace Negocio
                 email.To.Add(emailDestino);
                 email.Subject = asunto;
                 email.IsBodyHtml = true;
-                email.Body = "<h1> confirmcacion de participacion en promo Ganar</h1> <br> Gracias por particar, te deseamos suerte en el sorteo</br>";
+                email.Body = @"
+                         <html>
+                              <body style='font-family: Arial, sans-serif;'>
+                             <h3>Confirmación de participación</h3>
+                            <p>Te registraste correctamente en la <b>Promo Ganar</b>.</p>
+                            <p>Ya estás participando en el sorteo. ¡Mucha suerte!</p>
+                          </body>
+                           </html>";
+
             }
 
-            public void EnviarMail()
+        public void EnviarMail()
             {
                 try
                 {
