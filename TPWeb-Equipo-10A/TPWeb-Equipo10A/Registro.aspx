@@ -27,9 +27,9 @@
         
         <div class="form-group">
             <label class="form-label">DNI</label>
-            <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" MaxLength="8" onkeypress="return soloNumeros(event)" onkeyup="buscarDNI()" onblur="validarDNIOnBlur(this)" oninput="validarDNIOnBlur(this)"></asp:TextBox>
+            <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" MaxLength="8" onkeypress="return soloNumeros(event)" onkeyup="buscarDNI()" onblur="validarDNIOnBlur(this)" oninput="validarDNIOnInput(this)"></asp:TextBox>
             <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtNombre" runat="server" />
-            <asp:Label ID="lblMensajeDNI" runat="server" CssClass="validacion" Visible="false"></asp:Label>
+            <asp:Label ID="lblMensajeDNI" runat="server" CssClass="validacion" style="display: none;"></asp:Label>
         </div>
         
         <div class="form-group">
@@ -130,10 +130,13 @@
             }
         }
 
+        var timeoutValidacionDNI;
+
         function validarDNIOnBlur(input) {
             var valor = (input.value || '').trim();
             var esValido = valor.length >= 7 && valor.length <= 8;
             var lbl = document.getElementById('<%= lblMensajeDNI.ClientID %>');
+            
             if (!esValido) {
                 lbl.textContent = 'DNI debe tener entre 7 y 8 dígitos';
                 lbl.style.color = 'red';
@@ -142,6 +145,16 @@
                 lbl.textContent = '';
                 lbl.style.display = 'none';
             }
+        }
+
+        function validarDNIOnInput(input) {
+            if (timeoutValidacionDNI) {
+                clearTimeout(timeoutValidacionDNI);
+            }
+            
+            timeoutValidacionDNI = setTimeout(function() {
+                validarDNIOnBlur(input);
+            }, 2000);
         }
     </script>
 </asp:Content>
