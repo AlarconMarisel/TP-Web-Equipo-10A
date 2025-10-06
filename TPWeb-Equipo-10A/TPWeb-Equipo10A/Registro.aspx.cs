@@ -53,32 +53,17 @@ namespace TPWeb_Equipo10A
         }
         protected void btnParticipar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDNI.Text))
-            {
-                lblMensajeDNI.Text = "Este campo es requerido";
-                lblMensajeDNI.CssClass = "validacion";
-                lblMensajeDNI.Style["color"] = "red";
-                lblMensajeDNI.Visible = true;
-                return;
-            }
-            if (txtDNI.Text.Length < 7 || txtDNI.Text.Length > 8)
-            {
-                lblMensajeDNI.Text = "DNI debe tener entre 7 y 8 dígitos";
-                lblMensajeDNI.CssClass = "validacion";
-                lblMensajeDNI.Style["color"] = "red";
-                lblMensajeDNI.Visible = true;
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text) ||
-                string.IsNullOrWhiteSpace(txtDireccion.Text) ||
-                string.IsNullOrWhiteSpace(txtCiudad.Text) ||
-                string.IsNullOrWhiteSpace(txtCP.Text))
-            {
-                Response.Write("<script>alert('Todos los campos son requeridos.');</script>");
-                return;
-            }
+
+            //if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+            //    string.IsNullOrWhiteSpace(txtApellido.Text) ||
+            //    string.IsNullOrWhiteSpace(txtEmail.Text) ||
+            //    string.IsNullOrWhiteSpace(txtDireccion.Text) ||
+            //    string.IsNullOrWhiteSpace(txtCiudad.Text) ||
+            //    string.IsNullOrWhiteSpace(txtCP.Text))
+            //{
+            //    Response.Write("<script>alert('Todos los campos son requeridos.');</script>");
+            //    return;
+            //}
             if (!chkTerminos.Checked)
             {
                 Response.Write("<script>alert('Debe aceptar los términos y condiciones para participar.');</script>");

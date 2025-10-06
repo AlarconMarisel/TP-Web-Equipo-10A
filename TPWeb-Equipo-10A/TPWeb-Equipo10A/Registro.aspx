@@ -28,7 +28,6 @@
         <div class="form-group">
             <label class="form-label">DNI</label>
             <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" MaxLength="8" onkeypress="return soloNumeros(event)" onkeyup="buscarDNI()" onblur="validarDNIOnBlur(this)" oninput="validarDNIOnInput(this)"></asp:TextBox>
-            <asp:RequiredFieldValidator CssClass="validacion"  ErrorMessage="Este Campo es requerido!" ControlToValidate="txtNombre" runat="server" />
             <asp:Label ID="lblMensajeDNI" runat="server" CssClass="validacion" style="display: none;"></asp:Label>
         </div>
         
@@ -123,7 +122,7 @@
                     document.getElementById('<%= hdnBuscarDNI.ClientID %>').value = 'true';
                     __doPostBack('<%= Page.ClientID %>', 'BuscarDNI');
                 }, 1000);
-            } else if (dni.length < 7) {
+            } else if (dni.length < 7 || dni.length > 8) {
                 if (timeoutId) {
                     clearTimeout(timeoutId);
                 }
