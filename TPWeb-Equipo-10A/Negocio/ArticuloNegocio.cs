@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,39 @@ namespace Negocio
 
             try
             {
-                datos.SetearSP("storedListarArticulo");
-                datos.EjecutarLectura();
+                try
+                {
+                    datos.SetearSP("storedListarArticulo");
+                    datos.EjecutarLectura();
+                }
+                catch (SqlException ex)
+                {
+                    bool spInexistente =
+                        (ex.Errors != null && ex.Errors.Count > 0 && ex.Errors[0].Number == 2812) ||
+                        (ex.Message != null && (ex.Message.IndexOf("Could not find stored procedure", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                                ex.Message.IndexOf("No se encontró el procedimiento almacenado", StringComparison.OrdinalIgnoreCase) >= 0));
+
+                    if (!spInexistente)
+                        throw;
+
+                    datos.cerrarConexion();
+                    datos = new AccesoDatos();
+                    datos.SetearConsulta(@"SELECT 
+        A.Id,
+        A.Codigo,
+        A.Nombre,
+        A.Descripcion,
+        A.Precio,
+        A.IdMarca,
+        M.Descripcion AS Marca,
+        A.IdCategoria,
+        C.Descripcion AS Categoria
+    FROM ARTICULOS A
+    INNER JOIN MARCAS M ON A.IdMarca = M.Id
+    INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+    ORDER BY A.Nombre");
+                    datos.EjecutarLectura();
+                }
 
                 while (datos.Lector.Read())
                 {

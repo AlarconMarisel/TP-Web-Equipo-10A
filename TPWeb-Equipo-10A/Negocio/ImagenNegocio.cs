@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using Dominio;
 
 namespace Negocio
@@ -14,9 +15,28 @@ namespace Negocio
 
             try
             {
-                datos.SetearSP("storedListarImagen");
-                datos.SetearParametro("@IdArticulo", idArticulo);
-                datos.EjecutarLectura();
+                try
+                {
+                    datos.SetearSP("storedListarImagen");
+                    datos.SetearParametro("@IdArticulo", idArticulo);
+                    datos.EjecutarLectura();
+                }
+                catch (SqlException ex)
+                {
+                    bool spInexistente =
+                        (ex.Errors != null && ex.Errors.Count > 0 && ex.Errors[0].Number == 2812) ||
+                        (ex.Message != null && (ex.Message.IndexOf("Could not find stored procedure", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                                                ex.Message.IndexOf("No se encontró el procedimiento almacenado", StringComparison.OrdinalIgnoreCase) >= 0));
+
+                    if (!spInexistente)
+                        throw;
+
+                    datos.cerrarConexion();
+                    datos = new AccesoDatos();
+                    datos.SetearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES WHERE IdArticulo = @IdArticulo");
+                    datos.SetearParametro("@IdArticulo", idArticulo);
+                    datos.EjecutarLectura();
+                }
 
                 while (datos.Lector.Read())
                 {

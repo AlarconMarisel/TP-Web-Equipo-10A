@@ -1,0 +1,30 @@
+CREATE PROCEDURE storedListarImagen
+    @IdArticulo INT
+AS
+BEGIN
+    SELECT Id, IdArticulo, ImagenUrl 
+    FROM IMAGENES 
+    WHERE IdArticulo = @IdArticulo
+END
+
+
+
+
+CREATE PROCEDURE storedListarArticulo
+AS
+BEGIN
+    SELECT 
+        A.Id,
+        A.Codigo,
+        A.Nombre,
+        A.Descripcion,
+        A.Precio,
+        A.IdMarca,
+        M.Descripcion AS Marca,
+        A.IdCategoria,
+        C.Descripcion AS Categoria
+    FROM ARTICULOS A
+    INNER JOIN MARCAS M ON A.IdMarca = M.Id
+    INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+    ORDER BY A.Nombre
+END
