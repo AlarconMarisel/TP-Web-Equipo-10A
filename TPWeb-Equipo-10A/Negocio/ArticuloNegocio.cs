@@ -10,6 +10,11 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
+        // NOTA PARA CORRECCION:
+        // Practicamos Stored Procedures (storedListarArticulo) y y hoy nos dimos cuenta que
+        // nos olvidamos de implementar la consulta SQL texto para cuando no esten los SP creados por nosotros.
+        // Asi que implementamos metodo fallback a SQL texto cuando la BD no tiene el SP (error SQL 2812 o mensajes equivalentes),
+        // para que el proyecto funcione con y sin los SP creados para practicar.
         public List<Articulo> listarArticuloConSP()
         {
             List<Articulo> listadoArticulos = new List<Articulo>();

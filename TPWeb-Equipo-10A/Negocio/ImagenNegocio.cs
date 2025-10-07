@@ -8,6 +8,10 @@ namespace Negocio
 {
     public class ImagenNegocio
     {
+        // Nota para corrección:
+        // Practicamos Stored Procedures (storedListarImagen). Este método implementa
+        // un fallback a SQL texto cuando la BD no tiene el SP (error SQL 2812 o mensajes equivalentes),
+        // para que el proyecto funcione con y sin los SP creados durante la práctica.
         public List<Imagen> listarImagenesPorArticuloConSP(int idArticulo)
         {
             List<Imagen> lista = new List<Imagen>();
